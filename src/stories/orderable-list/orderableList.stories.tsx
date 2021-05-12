@@ -59,8 +59,8 @@ const initialItems = [
 	'Very, very large item. This is the biggest item on this fancy list and also the last one'
 ]
 
-const Template: Story<ComponentProps<typeof OrderableList>> = (args) => {
-	const [items, setItems] = useState<string[]>(initialItems)
+const Form: React.FC<any> = (props) => {
+	const { onSubmit } = props
 	const inputRef = useRef<HTMLInputElement>(null)
 
 	const handleAddItem = (e: React.FormEvent) => {
@@ -71,13 +71,8 @@ const Template: Story<ComponentProps<typeof OrderableList>> = (args) => {
 			return
 		}
 
-		setItems([inputRef.current!.value, ...items])
+		onSubmit(inputRef.current!.value)
 		inputRef.current!.value = ''
-	}
-
-	const handleRemove = (params: OnRemoveParams<string>) => {
-		action('onRemove')(params)
-		setItems(params.newItems)
 	}
 
 	return (
@@ -89,23 +84,38 @@ const Template: Story<ComponentProps<typeof OrderableList>> = (args) => {
 			<button onClick={handleAddItem} >
 				Add item
 			</button>
+		</>
+	)
+}
+
+const Template: Story<ComponentProps<typeof OrderableList>> = (args) => {
+	const [items, setItems] = useState<string[]>(initialItems)
+
+	const onSubmit = (value: string) => {
+		setItems([value, ...items])
+	}
+
+	const onRemove = (params: OnRemoveParams<string>) => {
+		action('onRemove')(params)
+		setItems(params.newItems)
+	}
+
+	return (
+		<>
+			<Form onSubmit={onSubmit} />
 			<OrderableList
 				{...args}
 				items={items}
 				className="list"
-				onRemove={handleRemove}
+				onRemove={onRemove}
 			/>
 		</>
 	)
 }
 
 export default {
-	title: 'OrderableList',
+	title: 'Orderable-list/Examples',
 	component: OrderableList,
-	argTypes: {
-		onDrop: { action: 'item dropped' },
-		onRemove: { action: 'item removed' }
-	}
 }
 
 export const Primary = Template.bind({})
@@ -121,11 +131,15 @@ WithGrabButton.args = {
 export const RemovableItems = Template.bind({})
 RemovableItems.args = {
 	itemComponent: RemovableItem,
-	animationDirection: 'right',
+	animationDirection: 'left',
+}
+RemovableItems.parameters = {
+	controls: { expanded: true }
 }
 RemovableItems.argTypes = {
 	animationDirection: {
 		options: ['right', 'left'],
-		control: { type: 'radio' }
+		control: { type: 'radio' },
+		description: 'Direction of animation on removed item'
 	}
 }
