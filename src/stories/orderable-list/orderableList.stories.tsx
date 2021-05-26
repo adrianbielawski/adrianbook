@@ -1,7 +1,7 @@
 import React, { ComponentProps, useRef, useState } from 'react'
 import { Story } from '@storybook/react'
 import { action } from '@storybook/addon-actions'
-import OrderableList, { ItemComponentProps, OnRemoveParams } from '@adrianbielawski/orderable-list'
+import OrderableList, { ItemComponentProps, OnDropParams, OnRemoveParams } from '@adrianbielawski/orderable-list'
 import './orderableList.css'
 
 const Item = (params: ItemComponentProps<string>) => {
@@ -100,6 +100,10 @@ const Template: Story<ComponentProps<typeof OrderableList>> = (args) => {
 		setItems(params.newItems)
 	}
 
+	const onDrop = (params: OnDropParams<string>) => {
+		action('onDrop')(params)
+	}
+
 	return (
 		<>
 			<Form onSubmit={onSubmit} />
@@ -108,6 +112,7 @@ const Template: Story<ComponentProps<typeof OrderableList>> = (args) => {
 				items={items}
 				className="list"
 				onRemove={onRemove}
+				onDrop={onDrop}
 			/>
 		</>
 	)
