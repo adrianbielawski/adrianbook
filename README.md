@@ -4,7 +4,7 @@
 
 Storybook with my reusable components. Very simple app for components showcase.
 
-https://adrianbook.adrian.bielaw.ski
+https://components.adrian.bielaw.ski
 
 ## Technology
 
