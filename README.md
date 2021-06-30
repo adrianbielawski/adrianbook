@@ -12,4 +12,4 @@ Simple create-react-app and Storybook
 
 ## Screenshots
 
-![main](./assets/readme/main.jpg)
+![main](./assets/main.jpg)
