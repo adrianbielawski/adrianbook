@@ -6,24 +6,19 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 ## Description
 
-A Storybook addon. It allows you to quickly find and copy to clipboard any color from your custom color palette.
+A Storybook addon. It allows you to quickly find any color from your custom color palette and set it on component's controls and/or copy to clipboard.
 
 Add one or multiple color palettes and set the default palette globaly, for component or single story.
-
 
 ## Technology
 
 Created with TypeScript, React and Storybook.
 
-## Migrate from v1 to v2
-
-To migrate from v1 to v2 adjust `parameters` in `preview.js` to match the pattern shown in [Add palettes](#add-palettes) in usage section below.
-
 ## Usage
 
 `$ npm i storybook-color-picker`
 
-### Add addon to Storybook
+### Add to your Storybook
 
 In your `.storybook` folder find `main.js` file and add this addon like below.
 
@@ -40,6 +35,10 @@ In your `.storybook` folder find `main.js` file and add this addon like below.
 
 ### Add palettes
 
+#### Globaly
+
+This will add color picker and palettes everywhere in your storybook.
+
 In your `.storybook` folder find `preview.js` file and add your color palette to parameters like below.
 Scroll down to find out how your color [palette](#palette) must look like.
 
@@ -50,9 +49,7 @@ import yourSecondColorPalette from './yourSecondColorPalette.json';
 export const parameters = {
   ...
   colorPalettes: {
-      // Name of default palette for all components and its stories.
-      // Optional (fallback to first palette from the palettes array).
-    default: 'Your first palette name', 
+    default: 'Your first palette name', // Name of default palette for all components and its stories. Optional (fallback to first palette from the palettes array).
     palettes: [
       {
         name: 'Your first palette name', // string
@@ -67,6 +64,56 @@ export const parameters = {
 };
 ```
 
+#### On component
+
+This will add color picker and palettes to all component's stories.
+
+In `MyComponent.stories.js` add:
+
+```tsx
+export default {
+  ...
+  parameters: {
+    ...
+    colorPalettes: {
+      default: 'Your first palette name',
+      palettes: [
+        {
+          name: 'Your first palette name',
+          palette: yourFirstColorPalette,
+        },
+        {
+          name: 'Your second palette name',
+          palette: yourSecondColorPalette,
+        },
+      ]
+    }
+  }
+};
+```
+
+#### On story
+
+This will add color picker and palettes to specific story.
+
+In `MyComponent.stories.js` add:
+
+```tsx
+export const Primary = Template.bind({});
+
+Primary.parameters = {
+  ...
+    colorPalettes: {
+      palettes: [
+        {
+          name: 'Your first palette name',
+          palette: yourFirstColorPalette,
+        },
+      ]
+    }
+}
+```
+
 ## Palette
 
 ### as Object
@@ -78,12 +125,14 @@ Example:
 
 ```tsx
   {
+    "white": "#fff", // valid hex, rgb, rgba, hsl, hsla
+    "black": "#000",
     "light": {
       " 500": "#aaa",
-      " 100": "#eee",
-      " 400": "#bbb",
-      " 200": "#ddd",
-      " 300": "#ccc"
+      " 100": "rgba(238, 238, 238, .8)",
+      " 200": "rgb(238, 238, 238)",
+      " 300": "hsla(0, 0%, 73%, .8)",
+      " 400": "hsl(0, 0%, 73%)"
     },
     "dark": {
       "0100": "#888",
@@ -106,7 +155,7 @@ Example:
     values: [
       {
         label: string,
-        value: string, // valid hex value
+        value: string,
       }
     ],
   };
@@ -186,11 +235,12 @@ The following list increases by specificity.
 
 ## Apply selected color to component's control
 
-Create list of agrs to witch color may be applied.
+All controls with type of "color" will be detected automatically.
+You can add extra controls to whitch color may be applied. Only controls of type "text" may be added as extra.
 
 ### On component
 
-Add list to all component's stories.
+Add list of extra controls to all component's stories.
 
 In `MyComponent.stories.js` add:
 
@@ -198,22 +248,20 @@ In `MyComponent.stories.js` add:
 export default {
   ...
   argTypes: {
-    backgroundColor: { control: 'color' },
-    textColor: { control: 'color' },
+    backgroundColor: { control: 'color' }, // Color controls will be detected automatically
+    label: { control: 'text' }, // Text controls may be added as extra
+    text: { control: 'text' }, // Text controls may be added as extra
   },
   parameters: {
     ...
-    applyColorTo: [
-      'backgroundColor', // Must match argType key
-      'textColor',
-    ]
+    applyColorTo: ['label'] // Must match argType key
   }
 };
 ```
 
 ### On story
 
-Add list to selected story or overwrite list added to component globaly as in example above.
+Add list of extra controls to selected story to overwrite list added to component globaly as in example above.
 
 In `MyComponent.stories.js` add:
 
@@ -222,8 +270,6 @@ export const Primary = Template.bind({});
 
 Primary.parameters = {
   ...
-  applyColorTo: [
-    'textColor'
-  ]
-}
+  applyColorTo: ['text'], // Pass empty array to clear extra controls
+};
 ```
