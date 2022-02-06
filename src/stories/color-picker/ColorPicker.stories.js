@@ -10,11 +10,11 @@ export default {
     textColor: { control: 'color' },
   },
   parameters: {
-    colorPalettes: {
-      default: 'Colorfull',
+    colorPicker: {
+      primaryPalette: 'Colorful',
       palettes: [
         {
-          name: 'Colorfull',
+          name: 'Colorful',
           palette: colorfullPalette,
         },
         {
