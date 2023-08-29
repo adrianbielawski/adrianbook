@@ -1,4 +1,4 @@
-import { Meta } from '@storybook/addon-docs/blocks';
+import { Meta } from "@storybook/blocks";
 
 <Meta title="Color-picker/Docs/Docs" />
 
@@ -31,7 +31,6 @@ In your `.storybook` folder find `main.js` file and add this addon like below.
     ]
   };
 ```
-
 
 ### Add palettes
 
@@ -121,6 +120,7 @@ Primary.parameters = {
 ```tsx
 type ColorPaletteAsObject = Record<string, Record<string, string> | string>;
 ```
+
 Example:
 
 ```tsx
@@ -144,53 +144,53 @@ Example:
   }
 ```
 
-`Usefull tip: add white spaces or zeros before numerical keys to prevent auto sorting`
-
+`Useful tip: add white spaces or zeros before numerical keys to prevent auto sorting`
 
 ### as Array
 
 ```tsx
-  type ColorPaletteAsArray = {
-    label: string,
-    values: [
-      {
-        label: string,
-        value: string,
-      }
-    ],
-  };
+type ColorPaletteAsArray = {
+  label: string;
+  values: [
+    {
+      label: string;
+      value: string;
+    }
+  ];
+};
 ```
+
 Example:
 
 ```tsx
-  [
-    {
-      "label": "light",
-      "values": [
-        {
-          "label": "100",
-          "value": "#fff"
-        },
-        {
-          "label": "200",
-          "value": "#aaa"
-        }
-      ]
-    },
-    {
-      "label": "dark",
-      "values": [
-        {
-          "label": "100",
-          "value": "#222"
-        },
-        {
-          "label": "200",
-          "value": "#000000"
-        }
-      ]
-    }
-  ]
+[
+  {
+    label: "light",
+    values: [
+      {
+        label: "100",
+        value: "#fff",
+      },
+      {
+        label: "200",
+        value: "#aaa",
+      },
+    ],
+  },
+  {
+    label: "dark",
+    values: [
+      {
+        label: "100",
+        value: "#222",
+      },
+      {
+        label: "200",
+        value: "#000000",
+      },
+    ],
+  },
+];
 ```
 
 ### Set default palette on component or its stories
@@ -220,8 +220,8 @@ In `MyComponent.stories.js` add:
 export const Primary = Template.bind({});
 
 Primary.parameters = {
-  defaultColorPalette: 'Your first palette name',
-}
+  defaultColorPalette: "Your first palette name",
+};
 ```
 
 #### Default palette specificity:
@@ -232,11 +232,10 @@ The following list increases by specificity.
 2. `defaultColorPalette` set on component `parameters`
 3. `defaultColorPalette` set on story `MyComponent.parameters`
 
-
 ## Apply selected color to component's control
 
 All controls with type of "color" will be detected automatically.
-You can add extra controls to whitch color may be applied. Only controls of type "text" may be added as extra.
+You can add extra controls to witch color may be applied. Only controls of type "text" may be added as extra.
 
 ### On component
 

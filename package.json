@@ -2,25 +2,32 @@
   "name": "adrianbook",
   "version": "0.1.0",
   "private": true,
-  "dependencies": {
-    "@adrianbielawski/orderable-list": "^0.1.9",
-    "@testing-library/jest-dom": "^5.12.0",
-    "@testing-library/react": "^11.2.6",
-    "@testing-library/user-event": "^12.8.3",
-    "@types/jest": "^26.0.23",
-    "@types/node": "^12.20.12",
-    "@types/react": "^17.0.5",
-    "@types/react-dom": "^17.0.3",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-scripts": "4.0.3",
-    "storybook-color-picker": "^2.3.1",
-    "typescript": "^4.2.4",
-    "web-vitals": "^1.1.2"
+  "devDependencies": {
+    "@adrianbielawski/orderable-list": "^0.1.17",
+    "@mdx-js/react": "^2.3.0",
+    "@storybook/mdx2-csf": "^1.1.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-scripts": "^5.0.1",
+    "storybook-color-picker": "^4.0.0",
+    "@storybook/addon-actions": "^7.4.0",
+    "@storybook/addon-essentials": "^7.4.0",
+    "@storybook/addon-links": "^7.4.0",
+    "@storybook/addon-mdx-gfm": "^7.4.0",
+    "@storybook/node-logger": "^7.4.0",
+    "@storybook/preset-create-react-app": "^7.4.0",
+    "@storybook/react": "^7.4.0",
+    "@storybook/react-webpack5": "^7.4.0",
+    "@types/node": "^20.5.7",
+    "@types/react": "^18.2.21",
+    "@types/react-dom": "^18.2.7",
+    "storybook": "^7.3.2",
+    "typescript": "^5.2.2",
+    "webpack": "^5.88.2"
   },
   "scripts": {
-    "start": "start-storybook -p 6006",
-    "build": "build-storybook"
+    "dev": "storybook dev",
+    "build": "storybook build"
   },
   "eslintConfig": {
     "extends": [
@@ -49,13 +56,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "@storybook/addon-actions": "^6.2.9",
-    "@storybook/addon-essentials": "^6.2.9",
-    "@storybook/addon-links": "^6.2.9",
-    "@storybook/node-logger": "^6.2.9",
-    "@storybook/preset-create-react-app": "^3.1.7",
-    "@storybook/react": "^6.2.9"
   }
 }
