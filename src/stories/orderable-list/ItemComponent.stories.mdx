@@ -1,35 +1,38 @@
-import { Meta } from '@storybook/addon-docs/blocks';
+import { Meta } from "@storybook/blocks";
 
 <Meta title="Orderable-list/Docs/ItemComponent" />
 
 # Item component
 
-Create your `ItemComponent` which optionaly contains `Grabbable` and `RemoveButton`:
+Create your `ItemComponent` which optionally contains `Grabbable` and `RemoveButton`:
 
 ```tsx
-import OrderableList, { ItemComponentProps } from '@adrianbielawski/orderable-list'
+import OrderableList, {
+  ItemComponentProps,
+} from "@adrianbielawski/orderable-list";
 
 const ToDoItem = (props: ItemComponentProps<string>) => (
-    <OrderableList.Grabbable className="to-do-item">
-        {params.item}
-        <OrderableList.RemoveButton className="remove-button">
-            Remove
-        </OrderableList.RemoveButton>
-    </OrderableList.Grabbable>
-)
+  <OrderableList.Grabbable className="to-do-item">
+    {params.item}
+    <OrderableList.RemoveButton className="remove-button">
+      Remove
+    </OrderableList.RemoveButton>
+  </OrderableList.Grabbable>
+);
 
-export default ToDoItem
+export default ToDoItem;
 ```
 
 See examples for different scenarios:
-* [primary](?path=/story/orderable-list-examples--primary)
-* [with grab button](?path=/story/orderable-list-examples--with-grab-button)
-* [removable items](?path=/story/orderable-list-examples--removable-items)
+
+- [primary](?path=/story/orderable-list-examples--primary)
+- [with grab button](?path=/story/orderable-list-examples--with-grab-button)
+- [removable items](?path=/story/orderable-list-examples--removable-items)
 
 ## ItemComponent takes following props
 
-| Name      | Type    | Description |
-| --------- | ------- | ----------- |
-| item      | any     | Item from the `items` array passed to OrderableList |
-| index     | number  | Current position on the list starts from 0 |
-| grabbed   | boolean | `true` if user grab this item |
+| Name    | Type    | Description                                         |
+| ------- | ------- | --------------------------------------------------- |
+| item    | any     | Item from the `items` array passed to OrderableList |
+| index   | number  | Current position on the list starts from 0          |
+| grabbed | boolean | `true` if user grab this item                       |
