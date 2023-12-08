@@ -10,7 +10,7 @@
     "react-dom": "^18.2.0",
     "react-scripts": "^5.0.1",
     "storybook-color-picker": "^4.0.0",
-    "@storybook/addon-actions": "^7.4.0",
+    "@storybook/addon-actions": "^7.6.4",
     "@storybook/addon-essentials": "^7.4.0",
     "@storybook/addon-links": "^7.4.0",
     "@storybook/addon-mdx-gfm": "^7.4.0",
